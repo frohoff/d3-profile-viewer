@@ -17,15 +17,16 @@ public enum HeroClass {
 		this.value = value;
 	}
 
+	@Override
 	@JsonValue
-	public String stringValue() {
+	public String toString() {
 		return value;
 	}
 
 	@JsonCreator
 	public static HeroClass forValue(String string) {
 		for (HeroClass clazz : HeroClass.class.getEnumConstants()) {
-			if (clazz.stringValue().equals(string)) {
+			if (clazz.toString().equals(string)) {
 				return clazz;
 			}
 		}

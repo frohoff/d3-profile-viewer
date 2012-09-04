@@ -7,6 +7,11 @@
 		<view-id value="/index.xhtml" />
 	</url-mapping>
 
+	<url-mapping id="heroEmbeddedMedium">
+		<pattern value="/profile/#{battleTagName}-#{battleTagCode}/hero/#{heroId}/medium" />
+		<view-id value="/heroMedium.xhtml" />
+	</url-mapping>
+
 	<url-mapping id="hero">
 		<pattern value="/profile/#{battleTagName}-#{battleTagCode}/hero/#{heroId}" />
 		<view-id value="/hero.xhtml" />

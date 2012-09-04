@@ -1,0 +1,181 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+		xmlns:bc="/WEB-INF/bc.taglib.xml"
+		xmlns:f="http://java.sun.com/jsf/core"
+		xmlns:fn="http://java.sun.com/jsp/jstl/functions"
+		xmlns:h="http://java.sun.com/jsf/html"
+		xmlns:ui="http://java.sun.com/jsf/facelets"
+		xmlns:p="http://primefaces.org/ui"
+		template="/WEB-INF/includes/embeddedLayout.xhtml">
+	<f:metadata>
+		<f:viewParam name="battleTagName" value="#{heroBean.battleTagName}"
+			required="true" />
+		<f:viewParam name="battleTagCode" value="#{heroBean.battleTagCode}"
+			required="true" />
+		<f:viewParam name="heroId" value="#{heroBean.heroId}"
+			required="true" />
+	</f:metadata>
+
+	<ui:param name="hero" value="#{heroBean.hero}" />
+
+	<ui:define name="title">Hero—#{hero.name}</ui:define>
+
+	<ui:define name="content">
+		<div class="hero">
+			<header class="clear-block">
+				<div class="meta">
+					<div class="class-name">
+						#{bc:heroClassName(hero.heroClass)}
+					</div>
+
+					<table class="level">
+						<tr>
+							<th>Level</th>
+							<td>#{hero.level}</td>
+						</tr>
+
+						<ui:fragment rendered="#{hero.paragonLevel > 0}">
+							<tr class="paragon">
+								<th>Paragon</th>
+								<td>#{hero.paragonLevel}</td>
+							</tr>
+						</ui:fragment>
+					</table>
+				</div>
+
+				<div class="portrait">
+					<div class="image-text #{fn:toLowerCase(hero.heroClass)}
+							#{(hero.gender == 'MALE') ? 'male' : 'female'}">
+						<span>#{bc:heroClassName(hero.heroClass)}</span>
+					</div>
+				</div>
+
+				<div class="names">
+					<div class="battle-tag">#{battleTagName}</div>
+					<div class="hero">#{hero.name}</div>
+				</div>
+			</header>
+
+			<div class="official-link">
+				<a href="http://us.battle.net/d3/en/profile/#{battleTagName}-#{battleTagCode}/hero/#{heroId}"
+						class="external">
+					View on battle.net »
+				</a>
+			</div>
+
+			<div class="stats">
+				<table class="right">
+					<tr>
+						<th>Strength</th>
+						<td>
+							<h:outputText value="#{hero.stats.strength}">
+								<f:convertNumber pattern="###,###,###"/>
+							</h:outputText>
+						</td>
+					</tr>
+
+					<tr>
+						<th>Dexterity</th>
+						<td>
+							<h:outputText value="#{hero.stats.dexterity}">
+								<f:convertNumber pattern="###,###,###"/>
+							</h:outputText>
+						</td>
+					</tr>
+
+					<tr>
+						<th>Vitality</th>
+						<td>
+							<h:outputText value="#{hero.stats.vitality}">
+								<f:convertNumber pattern="###,###,###"/>
+							</h:outputText>
+						</td>
+					</tr>
+
+					<tr>
+						<th>Intelligence</th>
+						<td>
+							<h:outputText value="#{hero.stats.intelligence}">
+								<f:convertNumber pattern="###,###,###"/>
+							</h:outputText>
+						</td>
+					</tr>
+				</table>
+
+				<table>
+					<tr>
+						<th>Hardcore</th>
+						<td>
+							#{hero.hardcore ? 'Yes' : 'No'}
+						</td>
+					</tr>
+
+					<tr>
+						<th>Elite Kills</th>
+						<td>
+							<h:outputText value="#{hero.kills.elites}">
+								<f:convertNumber pattern="###,###,###"/>
+							</h:outputText>
+						</td>
+					</tr>
+
+					<tr>
+						<th>Life</th>
+						<td>
+							<h:outputText value="#{hero.stats.life}">
+								<f:convertNumber pattern="###,###,###"/>
+							</h:outputText>
+						</td>
+					</tr>
+
+					<tr>
+						<th><abbr title="Damage Reduction">DR</abbr></th>
+						<td>
+							<h:outputText value="#{hero.stats.damageReduction * 100}">
+								<f:convertNumber pattern="0.00"/>
+							</h:outputText> %
+						</td>
+					</tr>
+				</table>
+
+				<table>
+					<tr>
+						<th>DPS</th>
+						<td>
+							<h:outputText value="#{hero.stats.damage}">
+								<f:convertNumber pattern="###,###,###"/>
+							</h:outputText>
+						</td>
+					</tr>
+
+					<tr>
+						<th><abbr title="Critical Hit Chance">Crit. Chance</abbr></th>
+						<td>
+							<h:outputText value="#{hero.stats.critChance * 100}">
+								<f:convertNumber pattern="0.00"/>
+							</h:outputText> %
+						</td>
+					</tr>
+
+					<tr>
+						<th><abbr title="Critical Hit Dmg">Crit. Dmg</abbr></th>
+						<td>
+							<h:outputText value="#{hero.stats.critDamage * 100}">
+								<f:convertNumber pattern="0.00"/>
+							</h:outputText> %
+						</td>
+					</tr>
+
+					<tr>
+						<th><abbr title="Life on Hit">LoH</abbr></th>
+						<td>
+							<h:outputText value="#{hero.stats.lifeOnHit}">
+								<f:convertNumber pattern="###,###,###"/>
+							</h:outputText>
+						</td>
+					</tr>
+				</table>
+			</div>
+		</div>
+	</ui:define>
+</ui:composition>

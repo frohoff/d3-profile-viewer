@@ -14,6 +14,11 @@ body .ui-widget {
 	font: 1em/1em "myriad-pro", sans-serif;
 }
 
+a {
+	color: white;
+	text-decoration: none;
+}
+
 /**
  * Layout
  */
@@ -39,6 +44,141 @@ body .ui-widget {
 }
 
 /**
+ * Embedded Layout
+ */
+
+body.embedded {
+	background: #222;
+	padding: 10px;
+}
+
+body.embedded header {
+	margin: 0 0 12px;
+}
+
+body.embedded .hero .meta {
+	text-align: right;
+	float: right;
+}
+body.embedded .hero .meta .class-name {
+	font-size: 1.25em;
+	font-style: italic;
+	font-weight: 600;
+	line-height: 1em;
+	margin: 0 0 4px;
+}
+
+body.embedded .hero .meta table.level {
+	border-spacing: 0;
+	font-size: 1em;
+	line-height: 1em;
+}
+
+body.embedded .hero .meta table.level th {
+	font-weight: normal;
+	width: 80px;
+}
+
+body.embedded .hero .meta table.level td {
+	color: #aaa;
+	font-weight: 300;
+	width: 32px;
+}
+
+body.embedded .hero .meta table.level .paragon th {
+	color: #00b4ff;
+}
+
+body.embedded .hero .meta table.level .paragon td {
+	color: #0099cc;
+}
+
+body.embedded .hero .portrait {
+	border: 3px solid #534741;
+	margin-right: 12px;
+	float: left;
+}
+
+body.embedded .hero .portrait > div {
+	background: url(#{resource['images:hero-nav-portraits.jpg']}) no-repeat;
+	width: 83px;
+	height: 66px;
+}
+
+body.embedded .hero .portrait .demon_hunter {
+	background-position-y: -66px;
+}
+
+body.embedded .hero .portrait .monk {
+	background-position-y: -132px;
+}
+
+body.embedded .hero .portrait .witch_doctor {
+	background-position-y: -198px;
+}
+
+body.embedded .hero .portrait .wizard {
+	background-position-y: -264px;
+}
+
+body.embedded .hero .portrait .female {
+	background-position-x: -83px;
+}
+
+body.embedded .hero .names {
+	float: left;
+}
+
+body.embedded .hero .names .battle-tag {
+	color: #ee0;
+	font-size: 2em;
+	line-height: 1em;
+	margin: 0 0 6px;
+}
+
+body.embedded .hero .names .hero {
+	font-size: 1.25em;
+	line-height: 1em;
+}
+
+body.embedded .hero .official-link {
+	font-size: 0.75em;
+	line-height: 1em;
+	position: fixed;
+	right: 10px;
+	bottom: 10px;
+}
+
+body.embedded .hero .official-link a {
+	color: #aaa;
+}
+
+body.embedded .hero .stats table {
+	font-size: 0.875em;
+	line-height: 1.125em;
+	float: left;
+	margin-right: 44px;
+}
+
+body.embedded .hero .stats table.right {
+	float: right;
+	margin-right: 0;
+}
+
+body.embedded .hero .stats th {
+	font-weight: normal;
+	text-align: left;
+	width: 96px;
+}
+
+body.embedded .hero .stats td {
+	color: #ccc;
+	font-weight: 300;
+	text-align: right;
+	width: 84px;
+}
+
+/**
  * Widget Styles
  */
 
@@ -57,6 +197,14 @@ body .ui-inputtext {
 
 .block-centered {
 	margin: 0 auto;
+}
+
+.image-text {
+	display: block;
+}
+
+.image-text span {
+	display: none;
 }
 
 /**
@@ -87,4 +235,31 @@ body .ui-inputtext {
 	display: inline-block;
 	padding: 6px 12px 6px 34px;
 	float: right;
+}
+
+/* Clear fix (http://www.positioniseverything.net/easyclearing.html) */
+
+.clear-block:after {
+	content: ".";
+	display: block;
+	height: 0;
+	clear: both;
+	visibility: hidden;
+}
+
+.clear-block {
+	display: inline-block;
+}
+
+/* Hides from IE-mac \*/
+* html .clear-block {
+	height: 1%;
+}
+.clear-block {
+	display: block;
+}
+/* End hide from IE-mac */
+
+.clear-both {
+	clear: both;
 }

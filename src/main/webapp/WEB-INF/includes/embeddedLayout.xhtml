@@ -12,33 +12,14 @@
 		<title><ui:insert name="title" /> | Diablo III Profile Viewer</title>
 
 		<h:outputStylesheet library="css" name="style.css" />
+
+		<h:outputScript library="primefaces" name="jquery/jquery.js" />
+		<h:outputScript library="js" name="script.js" />
 		<ui:include src="/WEB-INF/includes/typekit.xhtml" />
 		<ui:insert name="htmlHead" />
 	</h:head>
 
-	<h:body>
-		<div id="ajax-loading-indicator">
-			<div class="content">
-				<div class="box">
-					Loading…
-				</div>
-			</div>
-		</div>
-
-		<div id="wrapper">
-			<h1>Diablo III Profile Viewer</h1>
-
-			<ui:insert name="content" />
-
-			<footer>
-				© 2012 wasabi
-			</footer>
-		</div>
-
-		<p:ajaxStatus onstart="jQuery('body').trigger('ajaxstart')"
-			onprestart="jQuery('body').trigger('ajaxprestart')"
-			oncomplete="jQuery('body').trigger('ajaxcomplete')"
-			onsuccess="jQuery('body').trigger('ajaxsuccess')"
-			onerror="jQuery('body').trigger('ajaxerror')" />
+	<h:body styleClass="embedded">
+		<ui:insert name="content" />
 	</h:body>
 </html>
