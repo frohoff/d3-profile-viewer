@@ -157,12 +157,14 @@ body.embedded .hero .stats table {
 	font-size: 0.875em;
 	line-height: 1.125em;
 	float: left;
-	margin-right: 44px;
+}
+
+body.embedded .hero .stats table.left {
+	margin-right: 64px;
 }
 
 body.embedded .hero .stats table.right {
 	float: right;
-	margin-right: 0;
 }
 
 body.embedded .hero .stats th {
