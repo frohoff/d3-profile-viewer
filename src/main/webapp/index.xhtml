@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+		xmlns:h="http://java.sun.com/jsf/html"
+		xmlns:ui="http://java.sun.com/jsf/facelets"
+		xmlns:p="http://primefaces.org/ui"
+		template="/WEB-INF/includes/layout.xhtml">
+	<ui:define name="title">Home</ui:define>
+
+	<ui:define name="content">
+		<script type="text/javascript">
+		// <![CDATA[
+		function viewProfile() {
+			var battleTagName = jQuery('#battleTagName').val();
+			var battleTagCode = jQuery('#battleTagCode').val();
+			if (!battleTagName || !battleTagCode) {
+				alert('Please enter Battle Tag.');
+				return;
+			}
+			window.location = 'profile/' + battleTagName + '-' + battleTagCode;
+		}
+		// ]]>
+		</script>
+
+		<p class="centered">
+			Please enter your battle tag:
+		</p>
+
+		<p class="centered">
+			<p:inputText id="battleTagName" style="width: 160px;" /> #
+			<p:inputText id="battleTagCode" style="width: 80px;" />
+		</p>
+
+		<p class="centered">
+			<p:commandButton type="button" value="Submit"
+				onclick="viewProfile()" />
+		</p>
+	</ui:define>
+</ui:composition>

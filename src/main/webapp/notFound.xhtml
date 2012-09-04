@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8"?>
+	<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+		xmlns:f="http://java.sun.com/jsf/core"
+		xmlns:h="http://java.sun.com/jsf/html"
+		xmlns:ui="http://java.sun.com/jsf/facelets"
+		template="/WEB-INF/includes/layout.xhtml">
+	<f:metadata>
+		<f:event type="preRenderView"
+			listener="#{facesUtils.setHttp404NotFoundHeader}" />
+	</f:metadata>
+
+	<ui:define name="title">Page Not Found</ui:define>
+
+	<ui:define name="content">
+		<p class="centered">
+			Page could not be found.
+		</p>
+	</ui:define>
+</ui:composition>

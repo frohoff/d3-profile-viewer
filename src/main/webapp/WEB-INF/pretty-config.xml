@@ -1,0 +1,34 @@
+<pretty-config xmlns="http://ocpsoft.com/prettyfaces/3.3.3"
+		xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+		xsi:schemaLocation="http://ocpsoft.com/prettyfaces/3.3.3
+			http://ocpsoft.com/xml/ns/prettyfaces/ocpsoft-pretty-faces-3.3.3.xsd">
+	<url-mapping id="home">
+		<pattern value="/" />
+		<view-id value="/index.xhtml" />
+	</url-mapping>
+
+	<url-mapping id="hero">
+		<pattern value="/profile/#{battleTagName}-#{battleTagCode}/hero/#{heroId}" />
+		<view-id value="/hero.xhtml" />
+	</url-mapping>
+
+	<url-mapping id="profile">
+		<pattern value="/profile/#{battleTagName}-#{battleTagCode}" />
+		<view-id value="/profile.xhtml" />
+	</url-mapping>
+
+	<url-mapping id="error">
+		<pattern value="/error" />
+		<view-id value="/error.xhtml" />
+	</url-mapping>
+
+	<url-mapping id="notFound">
+		<pattern value="/notFound" />
+		<view-id value="/notFound.xhtml" />
+	</url-mapping>
+
+	<url-mapping id="viewExpired">
+		<pattern value="/viewExpired" />
+		<view-id value="/viewExpired.xhtml" />
+	</url-mapping>
+</pretty-config>

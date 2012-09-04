@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+		xmlns:f="http://java.sun.com/jsf/core"
+		xmlns:h="http://java.sun.com/jsf/html"
+		xmlns:ui="http://java.sun.com/jsf/facelets"
+		xmlns:p="http://primefaces.org/ui"
+		template="/WEB-INF/includes/layout.xhtml">
+	<f:metadata>
+		<f:viewParam name="battleTagName" value="#{profileBean.battleTagName}"
+			required="true" />
+		<f:viewParam name="battleTagCode" value="#{profileBean.battleTagCode}"
+			required="true" />
+	</f:metadata>
+
+	<ui:param name="profile" value="#{profileBean.profile}" />
+
+	<ui:define name="title">Profile</ui:define>
+
+	<ui:define name="content">
+		<h2>Heroes</h2>
+
+		<p:dataTable value="#{profile.heroes}" var="hero">
+			<p:column headerText="Name">
+				#{hero.name}
+			</p:column>
+
+			<p:column headerText="Class">
+				#{hero.heroClass}
+			</p:column>
+
+			<p:column headerText="Level">
+				#{hero.level}
+				<ui:fragment rendered="#{hero.paragonLevel > 0}">
+					(<span class="paragon">#{hero.paragonLevel}</span>)
+				</ui:fragment>
+			</p:column>
+
+			<p:column headerText="Hardcore">
+				#{hero.hardcore ? 'Yes' : 'No'}
+			</p:column>
+
+			<p:column>
+				<h:link outcome="/hero.xhtml" value="View »">
+					<f:param name="battleTagName" value="#{battleTagName}" />
+					<f:param name="battleTagCode" value="#{battleTagCode}" />
+					<f:param name="heroId" value="#{hero.id}" />
+				</h:link>
+			</p:column>
+		</p:dataTable>
+
+		<p class="centered">
+			<p:button outcome="/index.xhtml" value="« Go Back" />
+		</p>
+	</ui:define>
+</ui:composition>

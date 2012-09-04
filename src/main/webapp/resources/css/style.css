@@ -1,0 +1,90 @@
+/**
+ * D3 Profile Viewer Styles
+ */
+
+body {
+	background: #444;
+	color: white;
+	margin: 0;
+	padding: 0;
+}
+
+body,
+body .ui-widget {
+	font: 1em/1em "myriad-pro", sans-serif;
+}
+
+/**
+ * Layout
+ */
+
+#wrapper {
+	width: 960px;
+	margin: 0 auto;
+}
+
+#wrapper h1 {
+	font-size: 2em;
+	font-weight: 600;
+	line-height: 1em;
+	text-align: center;
+	text-transform: uppercase;
+}
+
+#wrapper footer {
+	color: #ccc;
+	font-size: 0.875em;
+	text-align: center;
+	margin: 36px 0;
+}
+
+/**
+ * Widget Styles
+ */
+
+body .ui-inputtext {
+	background: #555;
+	color: white;
+}
+
+/**
+ * Misc
+ */
+
+.centered {
+	text-align: center;
+}
+
+.block-centered {
+	margin: 0 auto;
+}
+
+/**
+ * Ajax loading indicator
+ */
+
+#ajax-loading-indicator {
+	display: none;
+}
+
+#ajax-loading-indicator .content {
+	position: fixed;
+	top: 12px;
+}
+
+#ajax-loading-indicator .content .box {
+	border: 1px solid #bbb;
+	border-radius: 3px;
+	box-shadow: 0 1px 1px rgba(100, 100, 100, 0.25);
+	background: white url(#{resource['images:ajax-loading.gif']}) 12px 7px
+		no-repeat;
+	background-size: 15px 15px;
+	color: #888;
+	font-size: 1em;
+	font-weight: 300;
+	line-height: 1em;
+	opacity: 0.8;
+	display: inline-block;
+	padding: 6px 12px 6px 34px;
+	float: right;
+}
