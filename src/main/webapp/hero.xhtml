@@ -6,6 +6,10 @@
 		xmlns:p="http://primefaces.org/ui"
 		template="/WEB-INF/includes/layout.xhtml">
 	<f:metadata>
+		<f:viewParam name="region" value="#{profileBean.region}"
+				required="true">
+			<f:validateRegex pattern="us|eu|tw" />
+		</f:viewParam>
 		<f:viewParam name="battleTagName" value="#{heroBean.battleTagName}"
 			required="true" />
 		<f:viewParam name="battleTagCode" value="#{heroBean.battleTagCode}"
@@ -43,11 +47,12 @@
 
 		<p class="centered">
 			#{lang.embedToken}:<br />
-			#{battleTagName}-#{battleTagCode}/hero/#{heroId}
+			#{region}/#{battleTagName}-#{battleTagCode}/hero/#{heroId}
 		</p>
 
 		<p class="centered">
 			<p:button outcome="/profile.xhtml" value="« #{lang.goBack}">
+				<f:param name="region" value="#{region}" />
 				<f:param name="battleTagName" value="#{battleTagName}" />
 				<f:param name="battleTagCode" value="#{battleTagCode}" />
 			</p:button>

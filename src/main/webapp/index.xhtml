@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <ui:composition xmlns="http://www.w3.org/1999/xhtml"
+		xmlns:f="http://java.sun.com/jsf/core"
 		xmlns:h="http://java.sun.com/jsf/html"
 		xmlns:ui="http://java.sun.com/jsf/facelets"
 		xmlns:p="http://primefaces.org/ui"
@@ -12,11 +13,17 @@
 		function viewProfile() {
 			var battleTagName = jQuery('#battleTagName').val();
 			var battleTagCode = jQuery('#battleTagCode').val();
+			var region = jQuery('#region_input').val();
 			if (!battleTagName || !battleTagCode) {
-				alert('Please enter Battle Tag.');
+				alert('#{lang.errorEnterBattleTag}');
 				return;
 			}
-			window.location = 'profile/' + battleTagName + '-' + battleTagCode;
+			if (!region) {
+				alert('#{lang.errorSelectRegion}');
+				return;
+			}
+			window.location = 'profile/' + region + '/' + battleTagName
+				+ '-' + battleTagCode;
 		}
 		// ]]>
 		</script>
@@ -31,7 +38,19 @@
 		</p>
 
 		<p class="centered">
-			<p:commandButton type="button" value="Submit"
+			#{lang.selectRegion}
+		</p>
+
+		<div class="centered">
+			<p:selectOneMenu id="region" style="width: 200px;">
+				<f:selectItem itemValue="us" itemLabel="#{lang.americas}" />
+				<f:selectItem itemValue="tw" itemLabel="#{lang.asia}" />
+				<f:selectItem itemValue="eu" itemLabel="#{lang.europe}" />
+			</p:selectOneMenu>
+		</div>
+
+		<p class="centered">
+			<p:commandButton type="button" value="#{lang.submit}"
 				onclick="viewProfile()" />
 		</p>
 	</ui:define>

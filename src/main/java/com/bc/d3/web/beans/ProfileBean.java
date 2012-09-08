@@ -23,8 +23,9 @@ public class ProfileBean {
 
 	private static final long HOUR_MILLISECONDS = 3600000;
 	private static final String PROFILE_API
-		= "http://us.battle.net/api/d3/profile/%s-%s/";
+		= "http://%s.battle.net/api/d3/profile/%s-%s/";
 
+	private String region;
 	private String battleTagName;
 	private int battleTagCode;
 
@@ -32,6 +33,14 @@ public class ProfileBean {
 
 	@Autowired
 	private ProfileRepository profileRepo;
+
+	public String getRegion() {
+		return region;
+	}
+
+	public void setRegion(String region) {
+		this.region = region;
+	}
 
 	public String getBattleTagName() {
 		return battleTagName;
@@ -76,7 +85,7 @@ public class ProfileBean {
 		try {
 			Client client = Client.create();
 			WebResource resource = client.resource(String.format(PROFILE_API,
-					battleTagName, battleTagCode));
+					region, battleTagName, battleTagCode));
 			String json = resource.get(String.class);
 			ObjectMapper mapper = new ObjectMapper();
 			return mapper.readValue(json, Profile.class);

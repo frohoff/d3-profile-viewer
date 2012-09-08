@@ -8,17 +8,17 @@
 	</url-mapping>
 
 	<url-mapping id="heroEmbeddedMedium">
-		<pattern value="/profile/#{battleTagName}-#{battleTagCode}/hero/#{heroId}/medium" />
+		<pattern value="/profile/#{region}/#{battleTagName}-#{battleTagCode}/hero/#{heroId}/medium" />
 		<view-id value="/heroMedium.xhtml" />
 	</url-mapping>
 
 	<url-mapping id="hero">
-		<pattern value="/profile/#{battleTagName}-#{battleTagCode}/hero/#{heroId}" />
+		<pattern value="/profile/#{region}/#{battleTagName}-#{battleTagCode}/hero/#{heroId}" />
 		<view-id value="/hero.xhtml" />
 	</url-mapping>
 
 	<url-mapping id="profile">
-		<pattern value="/profile/#{battleTagName}-#{battleTagCode}" />
+		<pattern value="/profile/#{region}/#{battleTagName}-#{battleTagCode}" />
 		<view-id value="/profile.xhtml" />
 	</url-mapping>
 

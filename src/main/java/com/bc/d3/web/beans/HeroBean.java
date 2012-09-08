@@ -25,8 +25,9 @@ public class HeroBean {
 
 	private static final long HOUR_MILLISECONDS = 3600000;
 	private static final String HERO_API
-		= "http://us.battle.net/api/d3/profile/%s-%s/hero/%d";
+		= "http://%s.battle.net/api/d3/profile/%s-%s/hero/%d";
 
+	private String region;
 	private String battleTagName;
 	private int battleTagCode;
 	private long heroId;
@@ -39,6 +40,14 @@ public class HeroBean {
 
 	@Autowired
 	private HeroRepository heroRepo;
+
+	public String getRegion() {
+		return region;
+	}
+
+	public void setRegion(String region) {
+		this.region = region;
+	}
 
 	public String getBattleTagName() {
 		return battleTagName;
@@ -92,7 +101,7 @@ public class HeroBean {
 		try {
 			Client client = Client.create();
 			WebResource resource = client.resource(String.format(HERO_API,
-					battleTagName, battleTagCode, heroId));
+					region, battleTagName, battleTagCode, heroId));
 			String json = resource.get(String.class);
 			ObjectMapper mapper = new ObjectMapper();
 			return mapper.readValue(json, Hero.class);
