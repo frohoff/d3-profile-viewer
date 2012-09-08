@@ -75,13 +75,19 @@ body.embedded .hero .meta table.level {
 }
 
 body.embedded .hero .meta table.level th {
+	font-size: 0.875em;
 	font-weight: normal;
+	line-height: 1em;
+	vertical-align: bottom;
 	width: 80px;
 }
 
 body.embedded .hero .meta table.level td {
 	color: #aaa;
-	font-weight: 300;
+	font-size: 1.25em;
+	font-weight: 600;
+	line-height: 1em;
+	vertical-align: bottom;
 	width: 32px;
 }
 
@@ -101,7 +107,7 @@ body.embedded .hero .portrait {
 
 body.embedded .hero .portrait > div {
 	background: url(#{resource['images:hero-nav-portraits.jpg']}) no-repeat;
-	width: 83px;
+	width: 72px;
 	height: 66px;
 }
 
@@ -121,8 +127,12 @@ body.embedded .hero .portrait .wizard {
 	background-position-y: -264px;
 }
 
+body.embedded .hero .portrait .male {
+	background-position-x: -8px;
+}
+
 body.embedded .hero .portrait .female {
-	background-position-x: -83px;
+	background-position-x: -88px;
 }
 
 body.embedded .hero .names {
