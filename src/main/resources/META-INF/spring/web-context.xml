@@ -11,4 +11,14 @@
 			http://www.springframework.org/schema/util/spring-util-3.1.xsd">
 	<bean id="facesContext" class="javax.faces.context.FacesContext"
 		factory-method="getCurrentInstance" scope="request" />
+
+	<bean id="utf8ResourceBundleFactory"
+		class="com.bc.d3.web.UTF8ResourceBundleFactory" />
+
+	<!-- l10n -->
+	<bean id="lang" class="com.bc.d3.web.UTF8ResourceBundle"
+			factory-bean="utf8ResourceBundleFactory"
+			factory-method="getResourceBundle" scope="request">
+		<constructor-arg value="l10n.Lang" />
+	</bean>
 </beans>

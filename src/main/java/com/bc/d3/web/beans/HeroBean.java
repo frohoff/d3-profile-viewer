@@ -2,11 +2,13 @@ package com.bc.d3.web.beans;
 
 import java.io.IOException;
 import java.util.Date;
+import java.util.ResourceBundle;
 
 import org.codehaus.jackson.JsonParseException;
 import org.codehaus.jackson.map.JsonMappingException;
 import org.codehaus.jackson.map.ObjectMapper;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.context.annotation.Scope;
 import org.springframework.stereotype.Component;
 
@@ -30,6 +32,10 @@ public class HeroBean {
 	private long heroId;
 
 	private Hero cachedHero;
+
+	@Autowired
+	@Qualifier("lang")
+	private ResourceBundle lang;
 
 	@Autowired
 	private HeroRepository heroRepo;
@@ -101,6 +107,11 @@ public class HeroBean {
 		} catch (RuntimeException exception) {
 			return null;
 		}
+	}
+
+	public String getLocalizedHeroClass() {
+		String clazz = getHero().getHeroClass().toStringCamelCase();
+		return lang.getString(clazz);
 	}
 
 	private static boolean isFresh(Hero hero) {

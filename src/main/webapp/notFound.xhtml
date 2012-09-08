@@ -9,11 +9,11 @@
 			listener="#{facesUtils.setHttp404NotFoundHeader}" />
 	</f:metadata>
 
-	<ui:define name="title">Page Not Found</ui:define>
+	<ui:define name="title">#{lang.pageNotFound}</ui:define>
 
 	<ui:define name="content">
 		<p class="centered">
-			Page could not be found.
+			#{lang.pageCouldNotBeFound}
 		</p>
 	</ui:define>
 </ui:composition>

@@ -11,6 +11,7 @@
 
 		<locale-config>
 			<default-locale>en</default-locale>
+			<supported-locale>zh_TW</supported-locale>
 		</locale-config>
 
 		<view-handler>com.bc.d3.faces.CustomViewHandler</view-handler>

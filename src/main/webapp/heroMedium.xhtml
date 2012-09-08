@@ -1,6 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <ui:composition xmlns="http://www.w3.org/1999/xhtml"
-		xmlns:bc="/WEB-INF/bc.taglib.xml"
 		xmlns:f="http://java.sun.com/jsf/core"
 		xmlns:fn="http://java.sun.com/jsp/jstl/functions"
 		xmlns:h="http://java.sun.com/jsf/html"
@@ -18,25 +17,25 @@
 
 	<ui:param name="hero" value="#{heroBean.hero}" />
 
-	<ui:define name="title">Hero—#{hero.name}</ui:define>
+	<ui:define name="title">#{lang.hero}—#{hero.name}</ui:define>
 
 	<ui:define name="content">
 		<div class="hero">
 			<header class="clear-block">
 				<div class="meta">
 					<div class="class-name">
-						#{bc:heroClassName(hero.heroClass)}
+						#{heroBean.localizedHeroClass}
 					</div>
 
 					<table class="level">
 						<tr>
-							<th>Level</th>
+							<th>#{lang.level}</th>
 							<td>#{hero.level}</td>
 						</tr>
 
 						<ui:fragment rendered="#{hero.paragonLevel > 0}">
 							<tr class="paragon">
-								<th>Paragon</th>
+								<th>#{lang.paragon}</th>
 								<td>#{hero.paragonLevel}</td>
 							</tr>
 						</ui:fragment>
@@ -46,7 +45,7 @@
 				<div class="portrait">
 					<div class="image-text #{fn:toLowerCase(hero.heroClass)}
 							#{(hero.gender == 'MALE') ? 'male' : 'female'}">
-						<span>#{bc:heroClassName(hero.heroClass)}</span>
+						<span>#{heroBean.localizedHeroClass}</span>
 					</div>
 				</div>
 
@@ -59,14 +58,14 @@
 			<div class="official-link">
 				<a href="http://us.battle.net/d3/en/profile/#{battleTagName}-#{battleTagCode}/hero/#{heroId}"
 						class="external">
-					View on battle.net »
+					#{lang.viewOnBnet} »
 				</a>
 			</div>
 
 			<div class="stats">
 				<table class="right">
 					<tr>
-						<th>Strength</th>
+						<th>#{lang.strength}</th>
 						<td>
 							<h:outputText value="#{hero.stats.strength}">
 								<f:convertNumber pattern="###,###,###"/>
@@ -75,7 +74,7 @@
 					</tr>
 
 					<tr>
-						<th>Dexterity</th>
+						<th>#{lang.dexterity}</th>
 						<td>
 							<h:outputText value="#{hero.stats.dexterity}">
 								<f:convertNumber pattern="###,###,###"/>
@@ -84,7 +83,7 @@
 					</tr>
 
 					<tr>
-						<th>Vitality</th>
+						<th>#{lang.vitality}</th>
 						<td>
 							<h:outputText value="#{hero.stats.vitality}">
 								<f:convertNumber pattern="###,###,###"/>
@@ -93,7 +92,7 @@
 					</tr>
 
 					<tr>
-						<th>Intelligence</th>
+						<th>#{lang.intelligence}</th>
 						<td>
 							<h:outputText value="#{hero.stats.intelligence}">
 								<f:convertNumber pattern="###,###,###"/>
@@ -104,14 +103,14 @@
 
 				<table class="left">
 					<tr>
-						<th>Hardcore</th>
+						<th>#{lang.mode}</th>
 						<td>
-							#{hero.hardcore ? 'Yes' : 'No'}
+							#{hero.hardcore ? lang.hardcore : lang.normal}
 						</td>
 					</tr>
 
 					<tr>
-						<th>Elite Kills</th>
+						<th>#{lang.eliteKills}</th>
 						<td>
 							<h:outputText value="#{hero.kills.elites}">
 								<f:convertNumber pattern="###,###,###"/>
@@ -120,7 +119,7 @@
 					</tr>
 
 					<tr>
-						<th>Life</th>
+						<th>#{lang.life}</th>
 						<td>
 							<h:outputText value="#{hero.stats.life}">
 								<f:convertNumber pattern="###,###,###"/>
@@ -129,7 +128,10 @@
 					</tr>
 
 					<tr>
-						<th><abbr title="Damage Reduction">DR</abbr></th>
+						<th>
+							<h:outputText value="#{lang.damageReductionHtml}"
+								escape="false" />
+						</th>
 						<td>
 							<h:outputText value="#{hero.stats.damageReduction * 100}">
 								<f:convertNumber pattern="0.00"/>
@@ -140,7 +142,7 @@
 
 				<table>
 					<tr>
-						<th>DPS</th>
+						<th>#{lang.dps}</th>
 						<td>
 							<h:outputText value="#{hero.stats.damage}">
 								<f:convertNumber pattern="###,###,###"/>
@@ -149,7 +151,10 @@
 					</tr>
 
 					<tr>
-						<th><abbr title="Critical Hit Chance">Crit. Chance</abbr></th>
+						<th>
+							<h:outputText value="#{lang.critChanceHtml}"
+								escape="false" />
+						</th>
 						<td>
 							<h:outputText value="#{hero.stats.critChance * 100}">
 								<f:convertNumber pattern="0.00"/>
@@ -158,7 +163,10 @@
 					</tr>
 
 					<tr>
-						<th><abbr title="Critical Hit Dmg">Crit. Dmg</abbr></th>
+						<th>
+							<h:outputText value="#{lang.critDamageHtml}"
+								escape="false" />
+						</th>
 						<td>
 							<h:outputText value="#{hero.stats.critDamage * 100}">
 								<f:convertNumber pattern="0.00"/>
@@ -167,7 +175,7 @@
 					</tr>
 
 					<tr>
-						<th>Life on Hit</th>
+						<th>#{lang.lifeOnHit}</th>
 						<td>
 							<h:outputText value="#{hero.stats.lifeOnHit}">
 								<f:convertNumber pattern="###,###,###"/>

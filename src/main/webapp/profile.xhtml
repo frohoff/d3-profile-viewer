@@ -14,33 +14,33 @@
 
 	<ui:param name="profile" value="#{profileBean.profile}" />
 
-	<ui:define name="title">Profile</ui:define>
+	<ui:define name="title">#{lang.profile}</ui:define>
 
 	<ui:define name="content">
-		<h2>Heroes</h2>
+		<h2>#{lang.heroes}</h2>
 
 		<p:dataTable value="#{profile.heroes}" var="hero">
-			<p:column headerText="Name">
+			<p:column headerText="#{lang.heroName}">
 				#{hero.name}
 			</p:column>
 
-			<p:column headerText="Class">
+			<p:column headerText="#{lang.heroClass}">
 				#{hero.heroClass}
 			</p:column>
 
-			<p:column headerText="Level">
+			<p:column headerText="#{lang.level}">
 				#{hero.level}
 				<ui:fragment rendered="#{hero.paragonLevel > 0}">
 					(<span class="paragon">#{hero.paragonLevel}</span>)
 				</ui:fragment>
 			</p:column>
 
-			<p:column headerText="Hardcore">
-				#{hero.hardcore ? 'Yes' : 'No'}
+			<p:column headerText="#{lang.mode}">
+				#{hero.hardcore ? lang.hardcore : lang.normal}
 			</p:column>
 
 			<p:column>
-				<h:link outcome="/hero.xhtml" value="View »">
+				<h:link outcome="/hero.xhtml" value="#{lang.view} »">
 					<f:param name="battleTagName" value="#{battleTagName}" />
 					<f:param name="battleTagCode" value="#{battleTagCode}" />
 					<f:param name="heroId" value="#{hero.id}" />
@@ -49,7 +49,7 @@
 		</p:dataTable>
 
 		<p class="centered">
-			<p:button outcome="/index.xhtml" value="« Go Back" />
+			<p:button outcome="/index.xhtml" value="« #{lang.goBack}" />
 		</p>
 	</ui:define>
 </ui:composition>

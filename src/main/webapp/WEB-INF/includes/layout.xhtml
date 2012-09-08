@@ -9,7 +9,7 @@
 		<link rel="shortcut icon" type="image/x-icon"
 			href="#{request.contextPath}/resources/favicon.ico" />
 
-		<title><ui:insert name="title" /> | Diablo III Profile Viewer</title>
+		<title><ui:insert name="title" /> | #{lang.siteTitle}</title>
 
 		<h:outputStylesheet library="css" name="style.css" />
 		<ui:include src="/WEB-INF/includes/typekit.xhtml" />
@@ -17,16 +17,8 @@
 	</h:head>
 
 	<h:body>
-		<div id="ajax-loading-indicator">
-			<div class="content">
-				<div class="box">
-					Loading…
-				</div>
-			</div>
-		</div>
-
 		<div id="wrapper">
-			<h1>Diablo III Profile Viewer</h1>
+			<h1>#{lang.siteTitle}</h1>
 
 			<ui:insert name="content" />
 
@@ -34,11 +26,5 @@
 				© 2012 wasabi
 			</footer>
 		</div>
-
-		<p:ajaxStatus onstart="jQuery('body').trigger('ajaxstart')"
-			onprestart="jQuery('body').trigger('ajaxprestart')"
-			oncomplete="jQuery('body').trigger('ajaxcomplete')"
-			onsuccess="jQuery('body').trigger('ajaxsuccess')"
-			onerror="jQuery('body').trigger('ajaxerror')" />
 	</h:body>
 </html>

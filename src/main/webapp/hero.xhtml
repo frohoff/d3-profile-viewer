@@ -16,37 +16,38 @@
 
 	<ui:param name="hero" value="#{heroBean.hero}" />
 
-	<ui:define name="title">Hero</ui:define>
+	<ui:define name="title">#{lang.hero}</ui:define>
 
 	<ui:define name="content">
 		<p:panelGrid columns="2" styleClass="block-centered">
 			<f:facet name="header">
-				Hero—#{hero.name}
+				#{lang.hero}—#{hero.name}
 			</f:facet>
 
-			<h:outputText value="Class" />
-			<h:outputText value="#{hero.heroClass}" />
+			<h:outputText value="#{lang.heroClass}" />
+			<h:outputText value="#{heroBean.localizedHeroClass}" />
 
-			<h:outputText value="Level" />
+			<h:outputText value="#{lang.level}" />
 			<h:outputText value="#{hero.level}" />
 
-			<h:outputText value="Paragon Level" />
+			<h:outputText value="#{lang.paragonLevel}" />
 			<h:outputText value="#{hero.paragonLevel}" />
 
-			<h:outputText value="Hardcore" />
-			<h:outputText value="#{hero.hardcore ? 'Yes' : 'No'}" />
+			<h:outputText value="#{lang.mode}" />
+			<h:outputText value="#{hero.hardcore ? lang.hardcore
+				: lang.normal}" />
 
-			<h:outputText value="DPS" />
+			<h:outputText value="#{lang.dps}" />
 			<h:outputText value="#{hero.stats.damage}" />
 		</p:panelGrid>
 
 		<p class="centered">
-			Embed token:<br />
+			#{lang.embedToken}:<br />
 			#{battleTagName}-#{battleTagCode}/hero/#{heroId}
 		</p>
 
 		<p class="centered">
-			<p:button outcome="/profile.xhtml" value="« Go Back">
+			<p:button outcome="/profile.xhtml" value="« #{lang.goBack}">
 				<f:param name="battleTagName" value="#{battleTagName}" />
 				<f:param name="battleTagCode" value="#{battleTagCode}" />
 			</p:button>
