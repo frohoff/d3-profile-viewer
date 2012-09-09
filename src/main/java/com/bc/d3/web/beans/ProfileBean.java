@@ -3,6 +3,8 @@ package com.bc.d3.web.beans;
 import java.io.IOException;
 import java.util.Date;
 
+import org.apache.commons.codec.EncoderException;
+import org.apache.commons.codec.net.URLCodec;
 import org.codehaus.jackson.JsonParseException;
 import org.codehaus.jackson.map.JsonMappingException;
 import org.codehaus.jackson.map.ObjectMapper;
@@ -24,6 +26,8 @@ public class ProfileBean {
 	private static final long HOUR_MILLISECONDS = 3600000;
 	private static final String PROFILE_API
 		= "http://%s.battle.net/api/d3/profile/%s-%s/";
+
+	private static final URLCodec URL_CODEC = new URLCodec("utf8");
 
 	private String region;
 	private String battleTagName;
@@ -85,7 +89,7 @@ public class ProfileBean {
 		try {
 			Client client = Client.create();
 			WebResource resource = client.resource(String.format(PROFILE_API,
-					region, battleTagName, battleTagCode));
+					region, URL_CODEC.encode(battleTagName), battleTagCode));
 			String json = resource.get(String.class);
 			ObjectMapper mapper = new ObjectMapper();
 			return mapper.readValue(json, Profile.class);
@@ -96,6 +100,8 @@ public class ProfileBean {
 		} catch (JsonMappingException exception) {
 			throw new NotFoundException();
 		} catch (IOException exception) {
+			throw new NotFoundException();
+		} catch (EncoderException exception) {
 			throw new NotFoundException();
 		}
 	}

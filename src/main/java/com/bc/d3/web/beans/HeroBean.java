@@ -4,6 +4,8 @@ import java.io.IOException;
 import java.util.Date;
 import java.util.ResourceBundle;
 
+import org.apache.commons.codec.EncoderException;
+import org.apache.commons.codec.net.URLCodec;
 import org.codehaus.jackson.JsonParseException;
 import org.codehaus.jackson.map.JsonMappingException;
 import org.codehaus.jackson.map.ObjectMapper;
@@ -26,6 +28,8 @@ public class HeroBean {
 	private static final long HOUR_MILLISECONDS = 3600000;
 	private static final String HERO_API
 		= "http://%s.battle.net/api/d3/profile/%s-%s/hero/%d";
+
+	private static final URLCodec URL_CODEC = new URLCodec("utf8");
 
 	private String region;
 	private String battleTagName;
@@ -101,7 +105,8 @@ public class HeroBean {
 		try {
 			Client client = Client.create();
 			WebResource resource = client.resource(String.format(HERO_API,
-					region, battleTagName, battleTagCode, heroId));
+					region, URL_CODEC.encode(battleTagName), battleTagCode,
+					heroId));
 			String json = resource.get(String.class);
 			ObjectMapper mapper = new ObjectMapper();
 			return mapper.readValue(json, Hero.class);
@@ -114,6 +119,8 @@ public class HeroBean {
 		} catch (IOException exception) {
 			throw new NotFoundException();
 		} catch (RuntimeException exception) {
+			return null;
+		} catch (EncoderException exception) {
 			return null;
 		}
 	}

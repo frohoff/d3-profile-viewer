@@ -3,6 +3,6 @@
   <nodes xsi:type="pageflow:PFPage" name="*" x="122" y="370" id="pf13470793675181" referenceLink="//@navigationRule.0/@fromViewId|" outlinks="pf13470793675182 pf13470793675183" path="*"/>
   <nodes xsi:type="pageflow:PFPage" name="notFound.xhtml" x="338" y="178" id="pf13470793675184" referenceLink="//@navigationRule.0/@navigationCase.0/@toViewId|" inlinks="pf13470793675182" path="/notFound.xhtml"/>
   <nodes xsi:type="pageflow:PFPage" name="viewExpired.xhtml" x="338" y="562" id="pf13470793675195" referenceLink="//@navigationRule.0/@navigationCase.1/@toViewId|" inlinks="pf13470793675183" path="/viewExpired.xhtml"/>
-  <links id="pf13470793675182" target="pf13470793675184" source="pf13470793675181" outcome="not_found" redirect="true"/>
+  <links id="pf13470793675182" target="pf13470793675184" source="pf13470793675181" outcome="not_found"/>
   <links id="pf13470793675183" target="pf13470793675195" source="pf13470793675181" outcome="view_expired" redirect="true"/>
 </pageflow:Pageflow>

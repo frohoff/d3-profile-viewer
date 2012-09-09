@@ -41,7 +41,6 @@
 		<navigation-case>
 			<from-outcome>not_found</from-outcome>
 			<to-view-id>/notFound.xhtml</to-view-id>
-			<redirect />
 		</navigation-case>
 
 		<navigation-case>
