@@ -25,7 +25,7 @@ public class ProfileBean {
 
 	private static final long HOUR_MILLISECONDS = 3600000;
 	private static final String PROFILE_API
-		= "http://%s.battle.net/api/d3/profile/%s-%s/";
+		= "http://%s.battle.net/api/d3/profile/%s-%s/index";
 
 	private static final URLCodec URL_CODEC = new URLCodec("utf8");
 
