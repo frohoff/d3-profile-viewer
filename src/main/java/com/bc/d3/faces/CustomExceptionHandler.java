@@ -56,11 +56,13 @@ public class CustomExceptionHandler extends ExceptionHandlerWrapper {
 		if (exception instanceof NotFoundException) {
 			logger.warn("NotFoundException encountered.", exception);
 			facesUtil.handleNavigation(null, Outcome.NOT_FOUND);
+			facesUtil.responseComplete();
 			return true;
 		}
 		if (exception instanceof ViewExpiredException) {
 			logger.warn("ViewExpiredException encountered.", exception);
 			facesUtil.handleNavigation(null, Outcome.VIEW_EXPIRED);
+			facesUtil.responseComplete();
 			return true;
 		}
 		return false;

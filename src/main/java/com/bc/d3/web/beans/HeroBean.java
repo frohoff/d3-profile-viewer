@@ -84,8 +84,10 @@ public class HeroBean {
 			return cachedHero;
 		}
 
+		String battleTag = getBattleTag();
 		cachedHero = heroRepo.findOne(heroId);
-		if ((cachedHero != null) && isFresh(cachedHero)) {
+		if ((cachedHero != null) && battleTag.equals(cachedHero.getBattleTag())
+				&& isFresh(cachedHero)) {
 			return cachedHero;
 		}
 
@@ -94,7 +96,7 @@ public class HeroBean {
 			throw new NotFoundException();
 		}
 
-		cachedHero.setBattleTag(getBattleTag());
+		cachedHero.setBattleTag(battleTag);
 		heroRepo.save(cachedHero);
 		return cachedHero;
 	}
