@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <ui:composition xmlns="http://www.w3.org/1999/xhtml"
+		xmlns:bc="/WEB-INF/bc.taglib.xml"
 		xmlns:f="http://java.sun.com/jsf/core"
 		xmlns:h="http://java.sun.com/jsf/html"
 		xmlns:ui="http://java.sun.com/jsf/facelets"
@@ -47,7 +48,7 @@
 
 		<p class="centered">
 			#{lang.embedToken}:<br />
-			#{region}/#{battleTagName}-#{battleTagCode}/hero/#{heroId}
+			#{region}/#{bc:urlencode(battleTagName)}-#{battleTagCode}/hero/#{heroId}
 		</p>
 
 		<p class="centered">
