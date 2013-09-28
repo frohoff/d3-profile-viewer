@@ -6,14 +6,11 @@
 		xmlns:p="http://primefaces.org/ui"
 		template="/WEB-INF/includes/layout.xhtml">
 	<f:metadata>
-		<f:viewParam name="region" value="#{profileBean.region}"
-				required="true">
+		<f:viewParam name="region" value="#{profileBean.region}" required="true">
 			<f:validateRegex pattern="us|eu|tw" />
 		</f:viewParam>
-		<f:viewParam name="battleTagName" value="#{profileBean.battleTagName}"
-			required="true" />
-		<f:viewParam name="battleTagCode" value="#{profileBean.battleTagCode}"
-			required="true" />
+		<f:viewParam name="battleTagName" value="#{profileBean.battleTagName}" required="true" />
+		<f:viewParam name="battleTagCode" value="#{profileBean.battleTagCode}" required="true" />
 	</f:metadata>
 
 	<ui:param name="profile" value="#{profileBean.profile}" />

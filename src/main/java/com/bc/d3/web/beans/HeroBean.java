@@ -7,6 +7,8 @@ import java.util.ResourceBundle;
 import org.codehaus.jackson.JsonParseException;
 import org.codehaus.jackson.map.JsonMappingException;
 import org.codehaus.jackson.map.ObjectMapper;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.context.annotation.Scope;
@@ -25,9 +27,9 @@ import static com.bc.d3.web.Functions.urlencode;
 @Scope("request")
 public class HeroBean {
 
+	private static final Logger LOGGER = LoggerFactory.getLogger(HeroBean.class);
 	private static final long HOUR_MILLISECONDS = 3600000;
-	private static final String HERO_API
-		= "http://%s.battle.net/api/d3/profile/%s-%s/hero/%d";
+	private static final String HERO_API = "http://%s.battle.net/api/d3/profile/%s-%s/hero/%d";
 
 	private String region;
 	private String battleTagName;
@@ -93,6 +95,7 @@ public class HeroBean {
 
 		cachedHero = fetchHero();
 		if (cachedHero == null) {
+			LOGGER.warn("Unable to find cached hero.");
 			throw new NotFoundException();
 		}
 
@@ -104,21 +107,25 @@ public class HeroBean {
 	private Hero fetchHero() {
 		try {
 			Client client = Client.create();
-			WebResource resource = client.resource(String.format(HERO_API,
-					region, urlencode(battleTagName), battleTagCode,
-					heroId));
+			WebResource resource = client.resource(String.format(HERO_API, region,
+				urlencode(battleTagName), battleTagCode, heroId));
 			String json = resource.get(String.class);
 			ObjectMapper mapper = new ObjectMapper();
 			return mapper.readValue(json, Hero.class);
 		} catch (UniformInterfaceException exception) {
+			LOGGER.error("Error occurred contacting D3 server", exception);
 			throw new NotFoundException();
 		} catch (JsonParseException exception) {
+			LOGGER.error("Error occurred parsing JSON response", exception);
 			throw new NotFoundException();
 		} catch (JsonMappingException exception) {
+			LOGGER.error("Error occurred parsing JSON response", exception);
 			throw new NotFoundException();
 		} catch (IOException exception) {
+			LOGGER.error("Unknown error occurred", exception);
 			throw new NotFoundException();
 		} catch (RuntimeException exception) {
+			LOGGER.error("Unknown error occurred", exception);
 			return null;
 		}
 	}

@@ -1,5 +1,8 @@
 package com.bc.d3.data;
 
+import org.codehaus.jackson.annotate.JsonIgnoreProperties;
+
+@JsonIgnoreProperties(ignoreUnknown = true)
 public class Item {
 
 	private String id;

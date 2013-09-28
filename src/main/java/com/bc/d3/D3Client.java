@@ -48,7 +48,7 @@ public class D3Client {
 		String json = FileUtils.readFileToString(new File(file));
 		ObjectMapper mapper = new ObjectMapper();
 		Hero hero = mapper.readValue(json, Hero.class);
-		System.out.println(hero);
+		System.out.println(hero.getLevel());
 
 		/*
 		Profile profile = mapper.readValue(json, Profile.class);

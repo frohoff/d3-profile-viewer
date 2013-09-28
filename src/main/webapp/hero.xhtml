@@ -7,16 +7,12 @@
 		xmlns:p="http://primefaces.org/ui"
 		template="/WEB-INF/includes/layout.xhtml">
 	<f:metadata>
-		<f:viewParam name="region" value="#{heroBean.region}"
-				required="true">
+		<f:viewParam name="region" value="#{heroBean.region}" required="true">
 			<f:validateRegex pattern="us|eu|tw" />
 		</f:viewParam>
-		<f:viewParam name="battleTagName" value="#{heroBean.battleTagName}"
-			required="true" />
-		<f:viewParam name="battleTagCode" value="#{heroBean.battleTagCode}"
-			required="true" />
-		<f:viewParam name="heroId" value="#{heroBean.heroId}"
-			required="true" />
+		<f:viewParam name="battleTagName" value="#{heroBean.battleTagName}" required="true" />
+		<f:viewParam name="battleTagCode" value="#{heroBean.battleTagCode}" required="true" />
+		<f:viewParam name="heroId" value="#{heroBean.heroId}" required="true" />
 	</f:metadata>
 
 	<ui:param name="hero" value="#{heroBean.hero}" />
@@ -25,9 +21,7 @@
 
 	<ui:define name="content">
 		<p:panelGrid columns="2" styleClass="block-centered">
-			<f:facet name="header">
-				#{lang.hero}—#{hero.name}
-			</f:facet>
+			<f:facet name="header">#{lang.hero}—#{hero.name}</f:facet>
 
 			<h:outputText value="#{lang.heroClass}" />
 			<h:outputText value="#{heroBean.localizedHeroClass}" />
@@ -39,8 +33,7 @@
 			<h:outputText value="#{hero.paragonLevel}" />
 
 			<h:outputText value="#{lang.mode}" />
-			<h:outputText value="#{hero.hardcore ? lang.hardcore
-				: lang.normal}" />
+			<h:outputText value="#{hero.hardcore ? lang.hardcore : lang.normal}" />
 
 			<h:outputText value="#{lang.dps}" />
 			<h:outputText value="#{hero.stats.damage}" />

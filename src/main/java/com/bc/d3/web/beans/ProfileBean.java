@@ -6,6 +6,8 @@ import java.util.Date;
 import org.codehaus.jackson.JsonParseException;
 import org.codehaus.jackson.map.JsonMappingException;
 import org.codehaus.jackson.map.ObjectMapper;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Scope;
 import org.springframework.stereotype.Component;
@@ -23,9 +25,9 @@ import static com.bc.d3.web.Functions.urlencode;
 @Scope("request")
 public class ProfileBean {
 
+	private static final Logger LOGGER = LoggerFactory.getLogger(ProfileBean.class);
 	private static final long HOUR_MILLISECONDS = 3600000;
-	private static final String PROFILE_API
-		= "http://%s.battle.net/api/d3/profile/%s-%s/index";
+	private static final String PROFILE_API = "http://%s.battle.net/api/d3/profile/%s-%s/index";
 
 	private String region;
 	private String battleTagName;
@@ -76,6 +78,7 @@ public class ProfileBean {
 
 		cachedProfile = fetchProfile();
 		if (cachedProfile == null) {
+			LOGGER.warn("Cached profile could not be found.");
 			throw new NotFoundException();
 		}
 
@@ -92,12 +95,16 @@ public class ProfileBean {
 			ObjectMapper mapper = new ObjectMapper();
 			return mapper.readValue(json, Profile.class);
 		} catch (UniformInterfaceException exception) {
+			LOGGER.error("Error occurred contacting D3 server", exception);
 			throw new NotFoundException();
 		} catch (JsonParseException exception) {
+			LOGGER.error("Error occurred parsing JSON response", exception);
 			throw new NotFoundException();
 		} catch (JsonMappingException exception) {
+			LOGGER.error("Error occurred parsing JSON response", exception);
 			throw new NotFoundException();
 		} catch (IOException exception) {
+			LOGGER.error("Unknown error occurred", exception);
 			throw new NotFoundException();
 		}
 	}
